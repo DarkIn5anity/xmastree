@@ -1,8 +1,10 @@
-FROM 	resin/rpi-raspbian:latest
+ARG distro=stretch
+FROM resin/rpi-raspbian:$distro
 
 COPY 	app/ /app
 
 RUN		chmod +x /app/xmastree.py
+
 WORKDIR /app
 
 RUN 	sudo apt-get update;	\
