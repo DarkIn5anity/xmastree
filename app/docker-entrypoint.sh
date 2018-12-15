@@ -1,4 +1,4 @@
 #!/bin/bash
 #to-do handle sigterm
-python xmastree.py
+/usr/bin/python /app/xmastree.py
 
