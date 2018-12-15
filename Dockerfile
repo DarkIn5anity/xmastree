@@ -1,10 +1,11 @@
+FROM 	resin/raspberry-pi-python:latest
 
-# Pull base image
-ARG distro=stretch
-FROM resin/rpi-raspbian:$distro
+COPY 	app/ /app
 
-COPY apps/ /
+RUN	chmod +x /app/xmastree.py
 
-RUN sudo apt-get install python-gpiozero python3-gpiozero
+RUN 	sudo apt-get update;	\
+	sudo apt-get upgrade;	\
+	sudo apt-get install python-gpiozero python3-gpiozero;
 
-ENTRYPOINT  /apps/xmastree.py
+ENTRYPOINT  /app/xmastree.py
