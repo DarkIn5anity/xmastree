@@ -3,7 +3,8 @@ FROM resin/rpi-raspbian:$distro
 
 COPY 	app/ /app
 
-RUN		chmod +x /app/xmastree.py
+RUN		chmod +x /app/xmastree.py; \
+		chmod +x /app/docker-entrypoint.sh;
 
 WORKDIR /app
 
