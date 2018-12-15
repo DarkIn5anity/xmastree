@@ -1,15 +1,11 @@
-ARG distro=stretch
-FROM resin/rpi-raspbian:$distro
+# Python Base Image from https://hub.docker.com/r/arm32v7/python/
+FROM arm32v7/python:2.7.13-jessie
 
-COPY 	app/ /app
+# Copy the Python Script to blink LED
+COPY app/ /app
 
-RUN		chmod +x /app/xmastree.py; \
-		chmod +x /app/docker-entrypoint.sh;
+# Intall the rpi.gpio python module
+RUN pip install --no-cache-dir rpi.gpio gpiozero
 
-WORKDIR /app
-
-RUN 	sudo apt-get update;	\
-		sudo apt-get upgrade;	\
-		sudo apt-get install python-gpiozero python3-gpiozero;
-
-ENTRYPOINT  "/app/docker-entrypoint.sh"
+# Trigger Python script
+CMD ["python", "/app/xmastree.py"]
